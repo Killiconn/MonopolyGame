@@ -1,5 +1,5 @@
 import java.util.*;
-
+//weird
 public class PropertyGroup extends Property
 {
 	String colour;

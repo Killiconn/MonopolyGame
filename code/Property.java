@@ -1,5 +1,5 @@
 import java.util.*;
-
+//weird
 public class Property extends Tile
 {
     String name;
