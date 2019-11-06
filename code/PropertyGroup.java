@@ -19,6 +19,11 @@ public class PropertyGroup extends Property
 
 	}
 
+	public void addProperty(String name, PropertyGroup propertyGroup, int position)
+	{
+
+	}
+
 	public void checkMonopoly()
 	{
 		for (Property prop : properties)
