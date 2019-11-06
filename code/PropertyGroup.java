@@ -1,13 +1,13 @@
 import java.util.*;
 //weird
-public class PropertyGroup extends Property
+public class PropertyGroup
 {
 	String colour;
 	int groupPrice;
 	ArrayList<Property> properties;
 
 
-	public PropertyGroup(String colour, int groupPrice, ArrayList<Property> properties)
+	public PropertyGroup(String colour, int groupPrice)
 	{
 		this.colour = colour;
 		this.groupPrice = groupPrice;
@@ -16,7 +16,7 @@ public class PropertyGroup extends Property
 
 	public int getPrice()
 	{
-
+		return 0;
 	}
 
 	public void addProperty(String name, PropertyGroup propertyGroup, int position)
@@ -28,8 +28,8 @@ public class PropertyGroup extends Property
 	{
 		for (Property prop : properties)
 		{
-			if (prop.propertyGroup == this.propertyGroup)
-				this.rent = rent * 2;
+			if (prop.propertyGroup.colour == this.colour)
+				prop.rent = prop.rent * 2;
 			else
 				continue;
 		}
