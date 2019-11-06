@@ -1,24 +1,24 @@
 import java.io.*;
 import java.util.*;
 
-public class ActionCard extends Tile
+public class ActionCard implements Tile
 {
 	String tile_id;
 	int position;
-	File chance = new File("/home/killian/Documents/thirdyear/CA314/ca314-monoply/code/chance.txt");
-	File communityChest = new File("/home/killian/Documents/thirdyear/CA314/mytest/community.txt");
+	File chance = new File("chance.txt");
+	File communityChest = new File("community.txt");
 	
 	Random rand = new Random();
 
-	public ActionCard(tile_id, position)
+	public ActionCard(String tile_id, int position)
 	{
-		this.tile_id = tile_id;
+		this.tile_id = "chanceCard";
 		this.position = position;
 		this.chance = chance;
 		this.communityChest = communityChest;
 	}
 
-	public static void landedOn(Player player)
+	public void landedOn(Player player) 
 	{
 		if(tile_id == "chanceCard")
 			chanceOutcome(player);
@@ -26,37 +26,44 @@ public class ActionCard extends Tile
 			communityOutcome(player);
 	}
 
-	public void chanceOutcome(Player player) throws FileNotFoundException
+	public void chanceOutcome(Player player) 
 	{
-		ArrayList<String> listofChance = new ArrayList<String>(); //Make a list of all outcomes in the file
-		Scanner chanceScan = new Scanner(chance); 
 		int lineinFile = rand.nextInt(11); //12 lines in each of the files
-		
-		while (chanceScan.hasNextLine())
+		ArrayList<String> listofChance = new ArrayList<String>(); //Make a list of all outcomes in the file
+		try
 		{
-			listofChance.add(chanceScan.nextLine()); //add all to list because you cant just get a random line from a file
+			Scanner chanceScan = new Scanner(chance); 
+			
+			while (chanceScan.hasNextLine())
+			{
+				listofChance.add(chanceScan.nextLine()); //add all to list because you cant just get a random line from a file
+			}
+			chanceScan.close();
 		}
-		chanceScan.close();
+		catch (FileNotFoundException ex)
+		{
+		}
 		
 		String randomChance = listofChance.get(lineinFile); //your outcome for the GUI
+		System.out.println(randomChance);
 
 
 		if(lineinFile == 0)//Advance to Go (Collect $200)
 		{
 			player.changeBank(player.getBalance() + 200);
-			player.changePosistion(0);
+			player.changePosition(0);
 		}
 
 		else if(lineinFile == 1)//Advance to *** —If you pass Go, collect $200
 		{
-			player.changePosistion(10); 
+			player.changePosition(10); 
 			if(position > 10)
 				player.changeBank(player.getBalance() + 200);
 		}
 
 		else if(lineinFile == 2)//Advance to *** – If you pass Go, collect $200
 		{
-			player.changePosistion(18); 
+			player.changePosition(18); 
 			if(position > 18)
 				player.changeBank(player.getBalance() + 200);
 		}
@@ -68,12 +75,12 @@ public class ActionCard extends Tile
 
 		else if(lineinFile == 4)//Go Back 3 Spaces
 		{
-			player.changePosistion(position - 3);
+			player.changePosition(position - 3);
 		}
 
 		else if(lineinFile == 5)//Go to Jail–Go directly to Jail–Do not pass Go, do not collect $200
 		{
-			player.changePosistion(8);
+			player.changePosition(8);
 		}
 
 		else if(lineinFile == 6)//Make general repairs on all your property–For each house pay $25–For each hotel $100
@@ -88,7 +95,7 @@ public class ActionCard extends Tile
 
 		else if(lineinFile == 8)//Take a trip to Reading Railroad–If you pass Go, collect $200
 		{
-			player.changePosistion(26); 
+			player.changePosition(26); 
 			if(position > 26)
 				player.changeBank(player.getBalance() + 200);
 		}
@@ -110,24 +117,31 @@ public class ActionCard extends Tile
 	}
 
 
-	public void communityOutcome(Player player) throws FileNotFoundException
+	public void communityOutcome(Player player)
 	{
-		ArrayList<String> listofCommunity = new ArrayList<String>();//List of all possible outcomes for community
-		Scanner communityScan = new Scanner(communityChest);
 		int lineinFile = rand.nextInt(11);
-
-		while (communityScan.hasNextLine())
+		ArrayList<String> listofCommunity = new ArrayList<String>();//List of all possible outcomes for community
+		try
 		{
-			listofCommunity.add(communityScan.nextLine());
+			Scanner communityScan = new Scanner(communityChest);
+
+			while (communityScan.hasNextLine())
+			{
+				listofCommunity.add(communityScan.nextLine());
+			}
+			communityScan.close();
 		}
-		communityScan.close();
+		catch (FileNotFoundException ex)
+		{
+		}
 		
-		String randomChance = listofChance.get(lineinFile);
+		String randomCommunity = listofCommunity.get(lineinFile);
+		System.out.println(randomCommunity);
 
 		if(lineinFile == 0)//Advance to Go (Collect $200)
 		{
 			player.changeBank(player.getBalance() + 200);
-			player.changePosistion(0);
+			player.changePosition(0);
 		}
 		
 		else if(lineinFile == 1)//Advance to Illinois Ave—If you pass Go, collect $200
@@ -147,7 +161,7 @@ public class ActionCard extends Tile
 
 		else if(lineinFile == 4)//Go to Jail–Go directly to jail–Do not pass Go–Do not collect $200
 		{
-			player.changePosistion(8);
+			player.changePosition(8);
 		}
 
 		else if(lineinFile == 5)//Holiday Fund matures—Receive $100

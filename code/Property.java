@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Property extends Tile
+public class Property
 {
     String name;
     int price;
