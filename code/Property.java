@@ -29,7 +29,7 @@ public class Property extends Tile
         player.changeBank(newBalance);
 
         this.status = true;
-        player.addProperty(this.name);
+        player.addProperty(this);
         this.owner = player;
         checkMono();
     }
@@ -71,7 +71,7 @@ public class Property extends Tile
         this.rent = rent;
     }
 
-    public static void landedOn(Player player)
+    public void landedOn(Player player)
     {
         getBought(player);
     }
