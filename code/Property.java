@@ -1,6 +1,6 @@
 import java.util.*;
 //weird
-public class Property extends Tile
+public class Property implements Tile
 {
     String name;
     int price;
