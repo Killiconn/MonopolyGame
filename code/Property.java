@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Property
+public class Property implements Tile
 {
     String name;
     int price;
