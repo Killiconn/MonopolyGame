@@ -1,4 +1,4 @@
-mport java.io.*;
+import java.io.*;
 import java.util.*;
 
 public class InteractiveTile implements Tile
@@ -15,16 +15,15 @@ public class InteractiveTile implements Tile
 	public void landedOn(Player player) 
 	{
 		if(tile_id == "Go")
-			changeBank(player.getBalance() + 200);
+			player.changeBank(player.getBalance() + 200);
 		
 		else if(tile_id == "Jail")
-		{
-			;
-		}
-
+			assert true;
+		
 		else if(tile_id == "FreeParking")
-			;
+			assert true;
 
 		else if(tile_id == "GoToJail")
 			player.changePosition(8);
 	}
+}
