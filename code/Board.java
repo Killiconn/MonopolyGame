@@ -4,6 +4,7 @@ public class Board
     private PropertyGroup [] propGroups; // Eight property groups
     private String [] props;    // List of property names
     private String [] corners;  // List of corner tiles
+    private Player [] playersAlive;  // List of players
 
     public Board()
     {
@@ -77,8 +78,67 @@ public class Board
         }
     }
 
+    public void begin(int numPlayers, int time)
+    {
+        this.setTime(time);
+        playersAlive = new Player [numPlayers];
+        for(int i=0; i<numPlayers; i++)
+        {
+            playersAlive[i] = new Player("Player_" + (i+1));
+        }
+        this.startGame();
+    }
+
     public int numTiles()
     {
         return this.board.lengthList();
+    }
+
+    public void setTime(int time)
+    {
+        return;
+    }
+
+    public void startGame()
+    {
+        int outcome;
+        int counter;
+        Dice dice = new Dice();
+        Boolean cond = true;
+        Tile temp;
+        Player p;
+        while(cond)
+        {
+            for(int i=0; i<playersAlive.length(); i++)
+            {
+                p = playersAlive[i];        // players Alive
+                if(p != null)
+                {
+                    outcome = dice.roll();                  // Dice roll
+                    p.changePosition(outcome);              // change the players position
+                    temp = this.board.getTile(p.position);  // get the tile the player landed on
+                    temp.landedOn(p);                       // Invoke landedOn method in Tile
+
+                    // Check if players are still alive
+                    if(p.getBalance() <= 0)
+                    {
+                        playersAlive[i] = null;
+                    }
+                }
+            }
+
+            for(Player p : playersAlive){counter++;}
+            // Check if one player left
+            if(counter == (numPlayers.length() - 1)){cond = false;}
+
+            counter = 0; // Reset counter
+        }
+
+        this.endGame();
+    }
+
+    public void endGame()
+    {
+        System.exit();
     }
 }

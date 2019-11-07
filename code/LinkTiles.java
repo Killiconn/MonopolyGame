@@ -46,7 +46,7 @@ public class LinkTiles
         {
             n = n.next;
         }
-        return n.value;  // Tile corresponding to the index
+        return n.getter();  // Tile corresponding to the index
     }
 }
 
@@ -69,5 +69,10 @@ class NodeTile
     public void addNext(NodeTile n)
     {
         this.next = n;
+    }
+
+    public Tile getter()
+    {
+        return this.value;
     }
 }
