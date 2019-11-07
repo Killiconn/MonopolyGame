@@ -1,6 +1,6 @@
 import java.util.*;
-
-public class Property extends Tile
+//weird
+public class Property implements Tile
 {
     String name;
     int price;
@@ -10,7 +10,7 @@ public class Property extends Tile
     int position;
     int rent;
 
-    public Property()
+    public Property(String name, PropertyGroup propertyGroup, int position)
     {
         this.name = name;
         this.price = price;
