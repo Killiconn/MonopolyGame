@@ -1,5 +1,5 @@
 import java.util.*;
-
+//weird
 public class Property implements Tile
 {
     String name;
@@ -10,7 +10,7 @@ public class Property implements Tile
     int position;
     int rent;
 
-    public Property()
+    public Property(String name, PropertyGroup propertyGroup, int position)
     {
         this.name = name;
         this.price = price;
