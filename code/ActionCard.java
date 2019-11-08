@@ -45,7 +45,6 @@ public class ActionCard implements Tile
 		}
 		
 		String randomChance = listofChance.get(lineinFile); //your outcome for the GUI
-		System.out.println(randomChance);
 
 
 		if(lineinFile == 0)//Advance to Go (Collect $200)
@@ -136,7 +135,6 @@ public class ActionCard implements Tile
 		}
 		
 		String randomCommunity = listofCommunity.get(lineinFile);
-		System.out.println(randomCommunity);
 
 		if(lineinFile == 0)//Advance to Go (Collect $200)
 		{
