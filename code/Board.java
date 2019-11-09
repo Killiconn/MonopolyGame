@@ -102,16 +102,17 @@ public class Board
     public void startGame()
     {
         int outcome;
-        int counter;
+        int counter = 0;
         Dice dice = new Dice();
         Boolean cond = true;
         Tile temp;
         Player p;
-        while(cond)
+        // Run ten times just to show it working
+        for(int j=0; j<10; j++)
         {
-            for(int i=0; i<playersAlive.length(); i++)
+            for(int i=0; i<playersAlive.length; i++)
             {
-                p = playersAlive[i];        // players Alive
+                p = playersAlive[i];                        // players Alive
                 if(p != null)
                 {
                     outcome = dice.roll();                  // Dice roll
@@ -120,6 +121,7 @@ public class Board
                     temp.landedOn(p);                       // Invoke landedOn method in Tile
 
                     // Check if players are still alive
+
                     if(p.getBalance() <= 0)
                     {
                         playersAlive[i] = null;
@@ -127,18 +129,26 @@ public class Board
                 }
             }
 
-            for(Player p : playersAlive){counter++;}
+            for(Player pl : playersAlive)
+            {
+                System.out.println(pl.position + " " + pl.ownedProp.size());
+                if(pl.ownedProp.size() > 0)
+                {
+                    System.out.println(" : " + pl.ownedProp.get(0).name + " --> " + pl.ownedProp.size());
+                }
+            }
             // Check if one player left
-            if(counter == (numPlayers.length() - 1)){cond = false;}
+            //if(counter == (playersAlive.length - 1)){cond = false;}
 
-            counter = 0; // Reset counter
+            // counter = 0; // Reset counter
         }
 
         this.endGame();
+    
     }
 
     public void endGame()
     {
-        System.exit();
+        System.exit(0);
     }
 }

@@ -42,11 +42,22 @@ public class LinkTiles
     {
         int i = 0;
         NodeTile n = root;
-        while(i<index)
+        while(i<index && n.next != null)
         {
             n = n.next;
+            i++;
         }
         return n.getter();  // Tile corresponding to the index
+    }
+
+    public void tester()
+    {
+        NodeTile n = root;
+        while(n != null)
+        {
+            System.out.println(n.value);
+            n = n.next;
+        }
     }
 }
 
