@@ -21,37 +21,35 @@ public class Property implements Tile
         this.rent = rent;
     }
 
-    public void setToBought(Player player)
+    public void setToBought(Player currentPlayer)
     {
-        int balance = player.getBalance();
+        int balance = currentPlayer.getBalance();
         int newBalance = balance - this.price;
 
-        player.changeBank(newBalance);
+        currentPlayer.changeBank(newBalance);
 
         this.status = true;
-        player.addProperty(this);
-        this.owner = player;
+        currentPlayer.addProperty(this);
+        this.owner = currentPlayer;
         checkMono();
     }
 
-    public Boolean getBought(Player otherPlayer)
+    public Boolean getBought(Player currentPlayer)
     {
-        if (this.status == true) // true == bought, false == available
+        System.out.println("Would you like to buy this property? [Yes/No]");
+        Scanner in = new Scanner(System.in);
+        String answer = in.next();
+        answer = answer.toLowerCase();
+        if (answer.equals("yes") && currentPlayer.getBalance() > this.price) // true == wantTobuy, false == doesn't want it
         {
-            int ownersBal = this.owner.getBalance();
-            int otherBal = otherPlayer.getBalance();
             
-            int newBal = ownersBal + this.rent;
-            this.owner.changeBank(newBal);
-            
-            int otherNewBal = otherBal - this.rent;
-            otherPlayer.changeBank(otherNewBal);
-            
+            setToBought(currentPlayer);
             return true;
         }
+        else if (answer.equals("no"))
+            return false;
         else
-            setToBought(otherPlayer);
-
+            System.out.println("You do not have enough funds!");
         return false;
 
     }
@@ -71,9 +69,21 @@ public class Property implements Tile
         this.rent = rent;
     }
 
-    public void landedOn(Player player)
+    public void landedOn(Player currentPlayer)
     {
-        getBought(player);
+        if (this.status == true) // true == bought, false == available
+        {
+            int ownersBal = this.owner.getBalance();
+            int otherBal = currentPlayer.getBalance();
+            
+            int newBal = ownersBal + this.rent;
+            this.owner.changeBank(newBal);
+            
+            int otherNewBal = otherBal - this.rent;
+            currentPlayer.changeBank(otherNewBal);
+        }
+        else
+            getBought(currentPlayer);
     }
 
     public void checkMono()
