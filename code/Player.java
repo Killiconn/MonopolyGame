@@ -17,10 +17,8 @@ public class Player
 
 	public void changePosition(int diceResult)
 	{
-		for (int i = 0; i < diceResult; i++)
-		{
-			this.position = this.position + 1;
-		}
+		this.position = diceResult % 32;
+
 	}
 
 	public void changeBank(int change)
