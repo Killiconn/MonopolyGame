@@ -13,17 +13,17 @@ public class Board
 
         // Making property groups
         propGroups = new PropertyGroup [8];
-        propGroups[0] = new PropertyGroup("Brown", 100);  // Colour, price
-        propGroups[1] = new PropertyGroup("Grey", 200);
-        propGroups[2] = new PropertyGroup("Pink", 300);
-        propGroups[3] = new PropertyGroup("Orange", 400);
-        propGroups[4] = new PropertyGroup("Red", 500);
-        propGroups[5] = new PropertyGroup("Yellow", 600);
-        propGroups[6] = new PropertyGroup("Khaki", 700);
-        propGroups[7] = new PropertyGroup("Blue", 800);
+        propGroups[0] = new PropertyGroup("Nissan/Brown", 100);  // Colour, price
+        propGroups[1] = new PropertyGroup("Kia/LightBlue", 200);
+        propGroups[2] = new PropertyGroup("Opel/Pink", 300);
+        propGroups[3] = new PropertyGroup("Toyota/Orange", 400);
+        propGroups[4] = new PropertyGroup("Renault/Red", 500);
+        propGroups[5] = new PropertyGroup("Volkswagen/Yellow", 600);
+        propGroups[6] = new PropertyGroup("Ford/Green", 700);
+        propGroups[7] = new PropertyGroup("McLaren/DarkBlue", 800);
 
         // create list of propert names
-        props = new String [] {"b1","b2","b3","g1","g2","g3","p1","p2","p3","o1","o2","o3","r1","r2","r3","y1","y2","y3","k1","k2","k3","bl1","bl2","bl3"};
+        props = new String [] {"Micra","Juke","Qashqai","C'eed","Rio","Sportage","Corsa","Astra","Insignia","Yaris","Prius","Corolla","Clio","Kadjar","Megane","Polo","Golf","Passat","Fiesta","Focus","Mondeo","Spider","GT","Speedtail"};
 
         // create list of corner tiles
         corners = new String [] {"Go", "Jail", "FreeParking", "GoToJail"};
