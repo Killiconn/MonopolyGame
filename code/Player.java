@@ -17,7 +17,7 @@ public class Player
 
 	public void changePosition(int diceResult)
 	{
-		this.position = diceResult % 32;
+		this.position = diceResult % 31;
 
 	}
 
