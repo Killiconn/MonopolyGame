@@ -21,7 +21,7 @@ public class Property implements Tile
         this.rent = rent;
     }
 
-    public void setToBought(Player currentPlayer)
+    public void optionToBuy(Player currentPlayer)
     {
         int balance = currentPlayer.getBalance();
         int newBalance = balance - this.price;
@@ -34,23 +34,38 @@ public class Property implements Tile
         checkMono();
     }
 
-    public Boolean getBought(Player currentPlayer)
+    public void getBought(Player currentPlayer)
     {
         System.out.println("Would you like to buy this property? [Yes/No]");
         Scanner in = new Scanner(System.in);
         String answer = in.next();
         answer = answer.toLowerCase();
-        if (answer.equals("yes") && currentPlayer.getBalance() > this.price) // true == wantTobuy, false == doesn't want it
+        String yes = "yes";
+        String no = "no";
+
+        while (true)
         {
-            
-            setToBought(currentPlayer);
-            return true;
+            if (answer.equals(yes) && currentPlayer.getBalance() > this.price)
+            {
+                optionToBuy(currentPlayer);
+                break;
+            }
+            else if (answer.equals(no))
+            {
+                break;
+            }
+            else if (!(answer.equals(yes) || answer.equals(no)))
+            {
+                System.out.println("Would you like to buy this property? [Yes/No] - Please enter Yes or No");
+                answer = in.next();
+                answer = answer.toLowerCase();
+            }
+            else
+            {
+                System.out.println("You do not have enough funds!");
+                break;
+            }
         }
-        else if (answer.equals("no"))
-            return false;
-        else
-            System.out.println("You do not have enough funds!");
-        return false;
 
     }
 
