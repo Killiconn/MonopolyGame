@@ -32,7 +32,7 @@ public class Player
 
 	public void changeBank(int change)
 	{
-
+		//players balance does not increase while they're in jail
 		if (this.getJailStatus() == false)
 		{
 
