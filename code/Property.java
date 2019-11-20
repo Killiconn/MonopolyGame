@@ -3,18 +3,18 @@ import java.util.*;
 public class Property implements Tile
 {
     String name;
-    int price;
+    private int price;
     PropertyGroup propertyGroup;
     Player owner;
     Boolean status = false;
     int position;
-    int rent;
+    int rent = price / 10;
 
     public Property(String name, PropertyGroup propertyGroup, int position)
     {
         this.name = name;
-        this.price = price;
         this.propertyGroup = propertyGroup;
+        this.price = this.propertyGroup.getGroupPrice();
         this.owner = owner;
         this.status = status;
         this.position = position;

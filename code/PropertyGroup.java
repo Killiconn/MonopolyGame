@@ -3,7 +3,7 @@ import java.util.*;
 public class PropertyGroup
 {
     String colour;
-    int groupPrice;
+    private int groupPrice;
     ArrayList<Property> properties;
 
 
@@ -12,6 +12,11 @@ public class PropertyGroup
         this.colour = colour;
         this.groupPrice = groupPrice;
         this.properties = new ArrayList<Property>();
+    }
+
+    public int getGroupPrice()
+    {
+        return this.groupPrice;
     }
 
     public void checkMonopoly()
