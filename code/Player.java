@@ -82,7 +82,7 @@ public class Player
 	{
 		for (Property prop: ownedProp)
 		{
-			this.bank = this.bank + (prop.price / 2);
+			this.bank = this.bank + (prop.getPrice() / 2);
 			//balance return int
 			// call Property.mortgage()
 			prop.mortgage();
