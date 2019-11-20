@@ -25,18 +25,52 @@ public class Player
 			this.position = (this.position + diceResult) % 31;
 		}
 		else
-		{
+		{	//skip one turn 
 			this.setJailStatus(false);
 		}
 	}
 
 	public void changeBank(int change)
 	{
-		//checks to make sure above 0
-		//if not, mortgage
-		//check if props are already mortgaged
-		//check if player is in jail
-		this.bank = this.bank + change;
+
+		if (this.getJailStatus() == false)
+		{
+
+			int proposedBalance = this.getBalance() + change;
+			if (proposedBalance < 0)
+			{
+				//check if mortgaging is possible
+				if ((this.ownedProp.size() > 0) && !(this.ownedProp.get(0).rent == 0))
+				{
+					//mortgage
+					this.mortgageProps();
+
+					if ((this.getBalance() + change) > 0)
+					{
+						this.bank = this.bank + change;
+					}
+
+					else
+					{
+						//bitch you dead
+						//ask bill to include a removePlayer method
+						System.out.println("bitch you dead");
+					}
+				}
+
+				else
+				{
+					//bitch you still dead
+					System.out.println("bitch you dead");
+				}
+
+			}
+
+			else
+			{
+				this.bank = this.bank + change;
+			}
+		}
 	}
 
 	public int getBalance()
@@ -50,8 +84,8 @@ public class Player
 		{
 			this.bank = this.bank + (prop.price / 2);
 			//balance return int
-			//release properties to be available to buy?
 			// call Property.mortgage()
+			prop.mortgage();
 		}
 	}
 
@@ -60,7 +94,7 @@ public class Player
 		this.ownedProp.add(prop);
 	}
 
-	public Boolean setJailStatus(Boolean bool)
+	public void setJailStatus(Boolean bool)
 	{
 		this.jailStatus = bool;
 	}
