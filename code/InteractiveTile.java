@@ -15,7 +15,7 @@ public class InteractiveTile implements Tile
 	public void landedOn(Player player) 
 	{
 		if(tile_id == "Go")
-			player.changeBank(player.getBalance() + 200);
+			assert true;
 		
 		else if(tile_id == "Jail")
 			assert true;
@@ -25,5 +25,11 @@ public class InteractiveTile implements Tile
 
 		else if(tile_id == "GoToJail")
 			player.changePosition(8);
+			player.setIfJail(true);
+	}
+
+	public void passedGo(Player player)
+	{
+		player.changeBank(player.getBalance() + 200)
 	}
 }
