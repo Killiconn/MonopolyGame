@@ -21,8 +21,4 @@ public class InteractiveTile implements Tile
         }
 	}
 
-	public void passedGo(Player player)
-	{
-		player.changeBank(200);
-	}
 }
