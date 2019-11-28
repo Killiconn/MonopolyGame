@@ -24,20 +24,12 @@ public class InteractiveTile implements Tile
 			assert true;
 
 		else if(tile_id == "GoToJail")
-<<<<<<< HEAD
-			player.changePosition(8);
-=======
-			player.changePosition(-this.posistion + 8);
->>>>>>> 2202e783d68382549845c05ec858c7f951dfc9e0
+			player.changePosition(-this.position + 8);
 			player.setJailStatus(true);
 	}
 
 	public void passedGo(Player player)
 	{
-<<<<<<< HEAD
-		player.changeBank(player.getBalance() + 200);
-=======
 		player.changeBank(200);
->>>>>>> 2202e783d68382549845c05ec858c7f951dfc9e0
 	}
 }
