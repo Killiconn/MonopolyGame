@@ -12,7 +12,7 @@ public class Player
 	{
 		this.name = name;
 		this.position = 0;
-		this.bank = 15000;
+		this.bank = 1500;
 		this.ownedProp = new ArrayList<Property>();
 		this.jailStatus = false;
 	}
@@ -22,7 +22,7 @@ public class Player
 		//check if player is in jail
 		if (this.getJailStatus() != true)
 		{
-			this.position = (this.position + diceResult) % 31;
+			this.position = (this.position + diceResult) % 32;
 		}
 		else
 		{	//skip one turn 
