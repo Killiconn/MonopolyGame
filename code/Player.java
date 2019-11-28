@@ -45,23 +45,12 @@ public class Player
 					//mortgage
 					this.mortgageProps();
 
-					if ((this.getBalance() + change) > 0)
-					{
-						this.bank = this.bank + change;
-					}
-
-					else
-					{
-						//bitch you dead
-						//ask bill to include a removePlayer method
-						System.out.println("bitch you dead");
-					}
+					this.bank = this.bank + change;
 				}
 
 				else
 				{
-					//bitch you still dead
-					System.out.println("bitch you dead");
+					this.bank = this.bank + change;
 				}
 
 			}
