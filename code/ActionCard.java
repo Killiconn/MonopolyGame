@@ -50,19 +50,19 @@ public class ActionCard implements Tile
 		if(lineinFile == 0)//Advance to Go (Collect $200)
 		{
 			player.changeBank(200);
-			player.changePosition(0);
+			player.changePosition(-this.position);
 		}
 
 		else if(lineinFile == 1)//Advance to *** —If you pass Go, collect $200
 		{
-			player.changePosition(10); 
+			player.changePosition(-this.position+5); 
 			if(position > 10)
 				player.changeBank(200);
 		}
 
 		else if(lineinFile == 2)//Advance to *** – If you pass Go, collect $200
 		{
-			player.changePosition(18); 
+			player.changePosition(-this.position+5); 
 			if(position > 18)
 				player.changeBank(200);
 		}
@@ -74,12 +74,12 @@ public class ActionCard implements Tile
 
 		else if(lineinFile == 4)//Go Back 3 Spaces
 		{
-			player.changePosition(position - 3);
+			player.changePosition(-this.position+9);
 		}
 
 		else if(lineinFile == 5)//Go to Jail–Go directly to Jail–Do not pass Go, do not collect $200
 		{
-			player.changePosition(8);
+			player.changePosition(-this.position + 8);
 		}
 
 		else if(lineinFile == 6)//Make general repairs on all your property–For each house pay $25–For each hotel $100
@@ -94,7 +94,7 @@ public class ActionCard implements Tile
 
 		else if(lineinFile == 8)//Take a trip to Reading Railroad–If you pass Go, collect $200
 		{
-			player.changePosition(26); 
+			player.changePosition(-this.position + 15); 
 			if(position > 26)
 				player.changeBank(200);
 		}
