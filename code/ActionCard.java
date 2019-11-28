@@ -89,7 +89,7 @@ public class ActionCard implements Tile
 
 		else if(lineinFile == 7)//Pay poor tax of $15
 		{
-			player.changeBank(15);
+			player.changeBank(-15);
 		}
 
 		else if(lineinFile == 8)//Take a trip to Reading Railroad–If you pass Go, collect $200
