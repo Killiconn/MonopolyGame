@@ -24,7 +24,7 @@ public class InteractiveTile implements Tile
 			assert true;
 
 		else if(tile_id == "GoToJail")
-			player.changePosition(-this.posistion + 8);
+			player.changePosition(-this.position + 8);
 			player.setJailStatus(true);
 	}
 
