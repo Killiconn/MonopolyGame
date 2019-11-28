@@ -51,6 +51,8 @@ public class Player
 				else
 				{
 					this.bank = this.bank + change;
+					this.unmortgageProps();
+
 				}
 
 			}
@@ -75,6 +77,14 @@ public class Player
 			//balance return int
 			// call Property.mortgage()
 			prop.mortgage();
+		}
+	}
+
+	public void unmortgageProps()
+	{
+		for (Property prop : ownedProp)
+		{
+			prop.availableAgain();
 		}
 	}
 
