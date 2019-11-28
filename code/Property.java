@@ -18,7 +18,7 @@ public class Property implements Tile
         this.owner = owner;
         this.status = status;
         this.position = position;
-        this.rent = price/10;
+        this.rent = price/5;
     }
 
     public void optionToBuy(Player currentPlayer)
@@ -124,6 +124,6 @@ public class Property implements Tile
     {
         this.status = false;
         this.owner = null;
-        this.rent = this.price / 10;
+        this.rent = this.price / 5;
     }
 }

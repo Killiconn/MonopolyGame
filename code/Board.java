@@ -108,7 +108,7 @@ public class Board
         Player p;
         int counter=0;
         // Run ten times just to show it working
-        for(int j=0; j<100; j++)
+        for(int j=0; j<1000; j++)
         {
             for(int i=0; i<playersAlive.length; i++)
             {
@@ -116,11 +116,11 @@ public class Board
                 if(p != null)
                 {
                     outcome = dice.roll();                  // Dice roll
+                    if((p.position + outcome) > 32){p.changeBank(200);} // Passed on go
                     p.changePosition(outcome);              // change the players position
                     temp = this.board.getTile(p.position);  // get the tile the player landed on
                     temp.landedOn(p);                       // Invoke landedOn method in Tile
 
-                    // pass go
                     // Check if players are still alive
                     if(p.getBalance() <= 0)
                     {
