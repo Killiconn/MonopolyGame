@@ -101,10 +101,8 @@ public class Board
 
     public void startGame()
     {
-        int outcome;
-        int counter = 0;
+        int outcome;  // Dice roll outcome
         Dice dice = new Dice();
-        Boolean cond = true;
         Tile temp;
         Player p;
         // Run ten times just to show it working
@@ -121,26 +119,19 @@ public class Board
                     temp.landedOn(p);                       // Invoke landedOn method in Tile
 
                     // Check if players are still alive
-
                     if(p.getBalance() <= 0)
                     {
+                        // p.unmortgageAll();
+                        System.out.print(p.name + ", you have ran out of money. Your properties have been mortgaged but it is not enought o bring you back from bankrupcty");
                         playersAlive[i] = null;
+                    }
+
+                    else
+                    {
+                        System.out.println(p.name + " : Money -> " + p.getBalance());
                     }
                 }
             }
-
-            for(Player pl : playersAlive)
-            {
-                System.out.println(pl.position + " " + pl.ownedProp.size());
-                if(pl.ownedProp.size() > 0)
-                {
-                    System.out.println(" : " + pl.ownedProp.get(0).name + " --> " + pl.ownedProp.size());
-                }
-            }
-            // Check if one player left
-            //if(counter == (playersAlive.length - 1)){cond = false;}
-
-            // counter = 0; // Reset counter
         }
 
         this.endGame();
