@@ -14,18 +14,11 @@ public class InteractiveTile implements Tile
 
 	public void landedOn(Player player) 
 	{
-		if(tile_id == "Go")
-			;
-		
-		else if(tile_id == "Jail")
-			;
-		
-		else if(tile_id == "FreeParking")
-			;
-
-		else if(tile_id == "GoToJail")
+        if(tile_id == "GoToJail")
+        {
 			player.changePosition(-this.position + 8);
 			player.setJailStatus(true);
+        }
 	}
 
 	public void passedGo(Player player)
