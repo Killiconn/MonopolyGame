@@ -8,7 +8,7 @@ public class Property implements Tile
     Player owner;
     Boolean status = false;
     int position;
-    int rent = price / 10;
+    int rent;
 
     public Property(String tile_id, PropertyGroup propertyGroup, int position)
     {
@@ -18,7 +18,7 @@ public class Property implements Tile
         this.owner = owner;
         this.status = status;
         this.position = position;
-        this.rent = rent;
+        this.rent = price/10;
     }
 
     public void optionToBuy(Player currentPlayer)
@@ -37,7 +37,10 @@ public class Property implements Tile
 
     public void getBought(Player currentPlayer)
     {
-        System.out.println("Would you like to buy this property? [Yes/No]");
+        //System.out.println("Would you like to buy this property? [Yes/No]");
+        if(currentPlayer.getBalance() > this.price){optionToBuy(currentPlayer);}
+        
+        /*
         Scanner in = new Scanner(System.in);
         String answer = in.next();
         answer = answer.toLowerCase();
@@ -67,6 +70,7 @@ public class Property implements Tile
                 break;
             }
         }
+        */
 
     }
 
@@ -120,5 +124,6 @@ public class Property implements Tile
     {
         this.status = false;
         this.owner = null;
+        this.rent = this.price / 10;
     }
 }
