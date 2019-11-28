@@ -46,10 +46,10 @@ public class ActionCard implements Tile
 		
 		String randomChance = listofChance.get(lineinFile); //your outcome for the GUI
 
-
+		System.out.println(randomChance);
 		if(lineinFile == 0)//Advance to Go (Collect $200)
 		{
-			player.changeBank(player.getBalance() + 200);
+			player.changeBank(200);
 			player.changePosition(0);
 		}
 
@@ -57,19 +57,19 @@ public class ActionCard implements Tile
 		{
 			player.changePosition(10); 
 			if(position > 10)
-				player.changeBank(player.getBalance() + 200);
+				player.changeBank(200);
 		}
 
 		else if(lineinFile == 2)//Advance to *** – If you pass Go, collect $200
 		{
 			player.changePosition(18); 
 			if(position > 18)
-				player.changeBank(player.getBalance() + 200);
+				player.changeBank(200);
 		}
 
 		else if(lineinFile == 3)//Bank pays you dividend of $50
 		{
-			player.changeBank(player.getBalance() + 50);
+			player.changeBank(50);
 		}
 
 		else if(lineinFile == 4)//Go Back 3 Spaces
@@ -84,34 +84,34 @@ public class ActionCard implements Tile
 
 		else if(lineinFile == 6)//Make general repairs on all your property–For each house pay $25–For each hotel $100
 		{
-			player.changeBank(player.getBalance() - (player.ownedProp.size() * 25));
+			player.changeBank((player.ownedProp.size() * 25));
 		}
 
 		else if(lineinFile == 7)//Pay poor tax of $15
 		{
-			player.changeBank(player.getBalance() - 15);
+			player.changeBank(15);
 		}
 
 		else if(lineinFile == 8)//Take a trip to Reading Railroad–If you pass Go, collect $200
 		{
 			player.changePosition(26); 
 			if(position > 26)
-				player.changeBank(player.getBalance() + 200);
+				player.changeBank(200);
 		}
 
 		else if(lineinFile == 9)//Your building and loan matures—Collect $150
 		{
-			player.changeBank(player.getBalance() + 150);
+			player.changeBank(150);
 		}
 		
 		else if(lineinFile == 10)//You have won a crossword competition—Collect $100
 		{
-			player.changeBank(player.getBalance() + 100);
+			player.changeBank(100);
 		}
 
 		else if(lineinFile == 11)//You inherit $100
 		{
-			player.changeBank(player.getBalance() + 100);
+			player.changeBank(100);
 		}
 	}
 
@@ -135,66 +135,66 @@ public class ActionCard implements Tile
 		}
 		
 		String randomCommunity = listofCommunity.get(lineinFile);
-
+		System.out.println(randomCommunity);
 		if(lineinFile == 0)//Advance to Go (Collect $200)
 		{
-			player.changeBank(player.getBalance() + 200);
-			player.changePosition(0);
+			player.changeBank(200);
+			player.changePosition(-this.position);
 		}
 		
 		else if(lineinFile == 1)//Advance to Illinois Ave—If you pass Go, collect $200
 		{
-			player.changeBank(player.getBalance() + 150);
+			player.changeBank(150);
 		}
 
 		else if(lineinFile == 2)//Bank error in your favor—Collect $200
 		{
-			player.changeBank(player.getBalance() + 150);
+			player.changeBank(150);
 		}
 
 		else if(lineinFile == 3)//Doctor's fee—Pay $50
 		{
-			player.changeBank(player.getBalance() - 50);
+			player.changeBank(-50);
 		}
 
 		else if(lineinFile == 4)//Go to Jail–Go directly to jail–Do not pass Go–Do not collect $200
 		{
-			player.changePosition(8);
+			player.changePosition(-this.position + 8);
 		}
 
 		else if(lineinFile == 5)//Holiday Fund matures—Receive $100
 		{
-			player.changeBank(player.getBalance() + 100);
+			player.changeBank(100);
 		}
 
 		else if(lineinFile == 6)//Income tax refund–Collect $20
 		{
-			player.changeBank(player.getBalance() + 20);
+			player.changeBank(20);
 		}
 
 		else if(lineinFile == 7)//Life insurance matures–Collect $100
 		{
-			player.changeBank(player.getBalance() + 100);
+			player.changeBank(100);
 		}
 
 		else if(lineinFile == 8)//Pay hospital fees of $100
 		{
-			player.changeBank(player.getBalance() - 100);
+			player.changeBank(-100);
 		}
 
 		else if(lineinFile == 9)//Pay school fees of $150
 		{
-			player.changeBank(player.getBalance() - 150);
+			player.changeBank(-150);
 		}
 
 		else if(lineinFile == 10)//You are assessed for street repairs–$40 per house
 		{
-			player.changeBank(player.getBalance() - (player.ownedProp.size() * 40));
+			player.changeBank(- (player.ownedProp.size() * 40));
 		}
 
 		else if(lineinFile == 11)//You have won second prize in a beauty contest–Collect $10
 		{
-			player.changeBank(player.getBalance() + 10);
+			player.changeBank(10);
 		}
 	}
 }

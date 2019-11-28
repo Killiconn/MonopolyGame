@@ -24,12 +24,12 @@ public class InteractiveTile implements Tile
 			assert true;
 
 		else if(tile_id == "GoToJail")
-			player.changePosition(8);
+			player.changePosition(-this.posistion + 8);
 			player.setJailStatus(true);
 	}
 
 	public void passedGo(Player player)
 	{
-		player.changeBank(player.getBalance() + 200);
+		player.changeBank(200);
 	}
 }
