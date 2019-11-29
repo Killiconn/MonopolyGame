@@ -2,31 +2,32 @@ import java.util.*;
 //weird
 public class Property implements Tile
 {
-    String name;
+    String tile_id;
     private int price;
     PropertyGroup propertyGroup;
     Player owner;
     Boolean status = false;
     int position;
-    int rent = price / 10;
+    int rent;
 
-    public Property(String name, PropertyGroup propertyGroup, int position)
+    public Property(String tile_id, PropertyGroup propertyGroup, int position)
     {
-        this.name = name;
+        this.tile_id = tile_id;
         this.propertyGroup = propertyGroup;
         this.price = this.propertyGroup.getGroupPrice();
         this.owner = owner;
         this.status = status;
         this.position = position;
-        this.rent = rent;
+        this.rent = price/5;
     }
 
     public void optionToBuy(Player currentPlayer)
     {
-        int balance = currentPlayer.getBalance();
-        int newBalance = balance - this.price;
+        // int balance = currentPlayer.getBalance();
+        // int newBalance = balance - this.price;
 
-        currentPlayer.changeBank(newBalance);
+        int negativeChange = (0 - this.price);
+        currentPlayer.changeBank(negativeChange);
 
         this.status = true;
         currentPlayer.addProperty(this);
@@ -36,7 +37,10 @@ public class Property implements Tile
 
     public void getBought(Player currentPlayer)
     {
-        System.out.println("Would you like to buy this property? [Yes/No]");
+        //System.out.println("Would you like to buy this property? [Yes/No]");
+        if(currentPlayer.getBalance() > this.price){optionToBuy(currentPlayer);}
+        
+        /*
         Scanner in = new Scanner(System.in);
         String answer = in.next();
         answer = answer.toLowerCase();
@@ -66,6 +70,7 @@ public class Property implements Tile
                 break;
             }
         }
+        */
 
     }
 
@@ -81,21 +86,22 @@ public class Property implements Tile
 
     public void unmortgage()
     {
-        this.rent = rent;
+        this.rent = this.price / 10;
     }
 
     public void landedOn(Player currentPlayer)
     {
         if (this.status == true) // true == bought, false == available
         {
-            int ownersBal = this.owner.getBalance();
-            int otherBal = currentPlayer.getBalance();
-            
-            int newBal = ownersBal + this.rent;
-            this.owner.changeBank(newBal);
-            
-            int otherNewBal = otherBal - this.rent;
-            currentPlayer.changeBank(otherNewBal);
+            // Check if owner is in jail or not
+            if(!(owner.getJailStatus()))
+            {
+                this.owner.changeBank(this.rent);
+                
+                //int otherNewBal = otherBal - this.rent;
+                int negativeChange = (0 - this.rent);
+                currentPlayer.changeBank(negativeChange);
+            }
         }
         else
             getBought(currentPlayer);
@@ -112,5 +118,12 @@ public class Property implements Tile
 
         if (count == 3)
             this.propertyGroup.checkMonopoly();
+    }
+
+    public void availableAgain()
+    {
+        this.status = false;
+        this.owner = null;
+        this.rent = this.price / 5;
     }
 }

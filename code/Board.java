@@ -85,6 +85,7 @@ public class Board
         for(int i=0; i<numPlayers; i++)
         {
             playersAlive[i] = new Player("Player_" + (i+1));
+            System.out.println("Welcome, " + playersAlive[i].name);
         }
         this.startGame();
     }
@@ -101,14 +102,13 @@ public class Board
 
     public void startGame()
     {
-        int outcome;
-        int counter = 0;
+        int outcome;  // Dice roll outcome
         Dice dice = new Dice();
-        Boolean cond = true;
         Tile temp;
         Player p;
+        int counter=0;
         // Run ten times just to show it working
-        for(int j=0; j<10; j++)
+        for(int j=0; j<1000; j++)
         {
             for(int i=0; i<playersAlive.length; i++)
             {
@@ -116,33 +116,35 @@ public class Board
                 if(p != null)
                 {
                     outcome = dice.roll();                  // Dice roll
+                    if((p.position + outcome) > 32){p.changeBank(200);} // Passed on go
                     p.changePosition(outcome);              // change the players position
                     temp = this.board.getTile(p.position);  // get the tile the player landed on
                     temp.landedOn(p);                       // Invoke landedOn method in Tile
 
                     // Check if players are still alive
-
                     if(p.getBalance() <= 0)
                     {
+                        // p.unmortgageAll();
+                        System.out.print(p.name + ", you have ran out of money. Your properties have been mortgaged but it is not enough to bring you back from bankrupcty\n");
                         playersAlive[i] = null;
                     }
+
+                    else
+                    {
+                        System.out.println(p.name + " : Money -> " + p.getBalance() + ", Position -> " + p.position + ", No. Properties -> " + p.ownedProp.size());
+                    }
+
+                    counter++;
                 }
             }
-
-            for(Player pl : playersAlive)
-            {
-                System.out.println(pl.position + " " + pl.ownedProp.size());
-                if(pl.ownedProp.size() > 0)
-                {
-                    System.out.println(" : " + pl.ownedProp.get(0).name + " --> " + pl.ownedProp.size());
-                }
-            }
-            // Check if one player left
-            //if(counter == (playersAlive.length - 1)){cond = false;}
-
-            // counter = 0; // Reset counter
+            if(counter == 1){break;}
+            
+            counter = 0;
         }
-
+        for(Player pp : playersAlive)
+        {
+            if(pp != null){System.out.println("The winner is " + pp.name);}
+        }
         this.endGame();
     
     }

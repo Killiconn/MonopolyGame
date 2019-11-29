@@ -12,7 +12,7 @@ public class Player
 	{
 		this.name = name;
 		this.position = 0;
-		this.bank = 15000;
+		this.bank = 1500;
 		this.ownedProp = new ArrayList<Property>();
 		this.jailStatus = false;
 	}
@@ -22,7 +22,7 @@ public class Player
 		//check if player is in jail
 		if (this.getJailStatus() != true)
 		{
-			this.position = (this.position + diceResult) % 31;
+			this.position = (this.position + diceResult) % 32;
 		}
 		else
 		{	//skip one turn 
@@ -45,23 +45,14 @@ public class Player
 					//mortgage
 					this.mortgageProps();
 
-					if ((this.getBalance() + change) > 0)
-					{
-						this.bank = this.bank + change;
-					}
-
-					else
-					{
-						//bitch you dead
-						//ask bill to include a removePlayer method
-						System.out.println("bitch you dead");
-					}
+					this.bank = this.bank + change;
 				}
 
 				else
 				{
-					//bitch you still dead
-					System.out.println("bitch you dead");
+					this.bank = this.bank + change;
+					this.unmortgageProps();
+
 				}
 
 			}
@@ -86,6 +77,14 @@ public class Player
 			//balance return int
 			// call Property.mortgage()
 			prop.mortgage();
+		}
+	}
+
+	public void unmortgageProps()
+	{
+		for (Property prop : ownedProp)
+		{
+			prop.availableAgain();
 		}
 	}
 
