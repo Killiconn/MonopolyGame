@@ -14,7 +14,6 @@ public class InteractiveTile implements Tile
 
 	public void landedOn(Player player) 
 	{
-<<<<<<< HEAD
 		if(tile_id == "Go")
 			assert true;
 		
@@ -25,10 +24,9 @@ public class InteractiveTile implements Tile
 			assert true;
 
 		else if(tile_id == "GoToJail")
-=======
+
         if(tile_id == "GoToJail")
         {
->>>>>>> cdfdca56ca65325a3668a4bc437e13c73eab782b
 			player.changePosition(-this.position + 8);
 			player.setJailStatus(true);
         }
