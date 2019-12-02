@@ -71,16 +71,16 @@ public class ActionCard implements Tile
 			player.changePosition(-this.position);
 		}
 
-		else if(lineinFile == 1)//Advance to *** —If you pass Go, collect $200
+		else if(lineinFile == 1)//Advance to GT —If you pass Go, collect $200
 		{
-			player.changePosition(-this.position+5); 
-			if(position > 10)
+			player.changePosition(-this.position+26); 
+			if(position > 26)
 				player.changeBank(200);
 		}
 
-		else if(lineinFile == 2)//Advance to *** – If you pass Go, collect $200
+		else if(lineinFile == 2)//Advance to Golf – If you pass Go, collect $200
 		{
-			player.changePosition(-this.position+5); 
+			player.changePosition(-this.position+18); 
 			if(position > 18)
 				player.changeBank(200);
 		}
@@ -92,7 +92,7 @@ public class ActionCard implements Tile
 
 		else if(lineinFile == 4)//Go Back 3 Spaces
 		{
-			player.changePosition(-this.position+9);
+			player.changePosition(-3);
 		}
 
 		else if(lineinFile == 5)//Go to Jail–Go directly to Jail–Do not pass Go, do not collect $200
@@ -110,10 +110,10 @@ public class ActionCard implements Tile
 			player.changeBank(-15);
 		}
 
-		else if(lineinFile == 8)//Take a trip to Reading Railroad–If you pass Go, collect $200
+		else if(lineinFile == 8)//Take a trip to Micra–If you pass Go, collect $200
 		{
-			player.changePosition(-this.position + 15); 
-			if(position > 26)
+			player.changePosition(-this.position + 1); 
+			if(position > 1)
 				player.changeBank(200);
 		}
 
@@ -147,19 +147,19 @@ public class ActionCard implements Tile
 			player.changePosition(-this.position);
 		}
 		
-		else if(lineinFile == 1)//Advance to Illinois Ave—If you pass Go, collect $200
+		else if(lineinFile == 1) //Bank error in your favor -> Collect $200
 		{
-			player.changeBank(150);
+			player.changeBank(200);
 		}
 
-		else if(lineinFile == 2)//Bank error in your favor—Collect $200
-		{
-			player.changeBank(150);
-		}
-
-		else if(lineinFile == 3)//Doctor's fee—Pay $50
+		else if(lineinFile == 2)//Doctor's fee—Pay $50
 		{
 			player.changeBank(-50);
+		}
+
+		else if(lineinFile == 3)//From sale of stock you get $50
+		{
+			player.changeBank(50);
 		}
 
 		else if(lineinFile == 4)//Go to Jail–Go directly to jail–Do not pass Go–Do not collect $200
