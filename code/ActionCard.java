@@ -18,7 +18,7 @@ public class ActionCard implements Tile
 		this.tile_id = tile_id;
 		this.position = position;
 
-		int lineinFile = rand.nextInt(11); //12 lines in each of the files
+		
 
 		try
 		{
@@ -60,6 +60,7 @@ public class ActionCard implements Tile
 
 	public void chanceOutcome(Player player) 
 	{		
+		int lineinFile = rand.nextInt(11); //12 lines in each of the files
 		String randomChance = listofChance[lineinFile]; //your outcome for the GUI
 
 		System.out.println(randomChance);
@@ -135,7 +136,7 @@ public class ActionCard implements Tile
 
 	public void communityOutcome(Player player)
 	{
-		
+		int lineinFile = rand.nextInt(11); //12 lines in each of the files	
 		String randomCommunity = listofCommunity[lineinFile];
 
 		System.out.println(randomCommunity);
