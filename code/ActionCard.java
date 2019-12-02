@@ -7,15 +7,47 @@ public class ActionCard implements Tile
 	int position;
 	File chance = new File("chance.txt");
 	File communityChest = new File("community.txt");
+	int lineinFile;
+	String [] listofChance = new String[12]; //Make a list of all outcomes in the file
+	String [] listofCommunity = new String[12];//List of all possible outcomes for community
 	
 	Random rand = new Random();
 
 	public ActionCard(String tile_id, int position)
 	{
-		this.tile_id = "chanceCard";
+		this.tile_id = tile_id;
 		this.position = position;
-		this.chance = chance;
-		this.communityChest = communityChest;
+
+		int lineinFile = rand.nextInt(11); //12 lines in each of the files
+
+		try
+		{
+			Scanner chanceScan = new Scanner(chance); 
+			
+			int counter = 0;
+			while (chanceScan.hasNextLine())
+			{
+				listofChance[counter] = chanceScan.nextLine(); //add all to list because you cant just get a random line from a file
+				counter ++;
+			}
+			chanceScan.close();
+
+
+			Scanner communityScan = new Scanner(communityChest);
+
+			counter = 0;
+			while (communityScan.hasNextLine())
+			{
+				listofCommunity[counter] = communityScan.nextLine();
+				counter ++;
+			}
+			communityScan.close();
+		}
+		catch (FileNotFoundException ex)
+		{
+			System.out.println("Unable to find the file.");
+		}
+
 	}
 
 	public void landedOn(Player player) 
@@ -27,26 +59,11 @@ public class ActionCard implements Tile
 	}
 
 	public void chanceOutcome(Player player) 
-	{
-		int lineinFile = rand.nextInt(11); //12 lines in each of the files
-		ArrayList<String> listofChance = new ArrayList<String>(); //Make a list of all outcomes in the file
-		try
-		{
-			Scanner chanceScan = new Scanner(chance); 
-			
-			while (chanceScan.hasNextLine())
-			{
-				listofChance.add(chanceScan.nextLine()); //add all to list because you cant just get a random line from a file
-			}
-			chanceScan.close();
-		}
-		catch (FileNotFoundException ex)
-		{
-		}
-		
-		String randomChance = listofChance.get(lineinFile); //your outcome for the GUI
+	{		
+		String randomChance = listofChance[lineinFile]; //your outcome for the GUI
 
 		System.out.println(randomChance);
+
 		if(lineinFile == 0)//Advance to Go (Collect $200)
 		{
 			player.changeBank(200);
@@ -118,24 +135,11 @@ public class ActionCard implements Tile
 
 	public void communityOutcome(Player player)
 	{
-		int lineinFile = rand.nextInt(11);
-		ArrayList<String> listofCommunity = new ArrayList<String>();//List of all possible outcomes for community
-		try
-		{
-			Scanner communityScan = new Scanner(communityChest);
-
-			while (communityScan.hasNextLine())
-			{
-				listofCommunity.add(communityScan.nextLine());
-			}
-			communityScan.close();
-		}
-		catch (FileNotFoundException ex)
-		{
-		}
 		
-		String randomCommunity = listofCommunity.get(lineinFile);
+		String randomCommunity = listofCommunity[lineinFile];
+
 		System.out.println(randomCommunity);
+
 		if(lineinFile == 0)//Advance to Go (Collect $200)
 		{
 			player.changeBank(200);
