@@ -90,9 +90,9 @@ public class ActionCard implements Tile
 			player.changeBank(50);
 		}
 
-		else if(lineinFile == 4)//Go Back 3 Spaces
+		else if(lineinFile == 4)//Road tax, pay $150
 		{
-			player.changePosition(-3);
+			player.changeBank(-150);
 		}
 
 		else if(lineinFile == 5)//Go to Jail–Go directly to Jail–Do not pass Go, do not collect $200
@@ -105,9 +105,9 @@ public class ActionCard implements Tile
 			player.changeBank((player.ownedProp.size() * 25));
 		}
 
-		else if(lineinFile == 7)//Pay poor tax of $15
+		else if(lineinFile == 7)//Tank is empty, pay $150
 		{
-			player.changeBank(-15);
+			player.changeBank(-150);
 		}
 
 		else if(lineinFile == 8)//Take a trip to Micra–If you pass Go, collect $200
@@ -167,9 +167,9 @@ public class ActionCard implements Tile
 			player.changePosition(-this.position + 8);
 		}
 
-		else if(lineinFile == 5)//Holiday Fund matures—Receive $100
+		else if(lineinFile == 5)//Holiday Fund matures—Receive $50
 		{
-			player.changeBank(100);
+			player.changeBank(50);
 		}
 
 		else if(lineinFile == 6)//Income tax refund–Collect $20
@@ -194,7 +194,7 @@ public class ActionCard implements Tile
 
 		else if(lineinFile == 10)//You are assessed for street repairs–$40 per house
 		{
-			player.changeBank(- (player.ownedProp.size() * 40));
+			player.changeBank(- (player.ownedProp.size() * 100));
 		}
 
 		else if(lineinFile == 11)//You have won second prize in a beauty contest–Collect $10
